@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const Manager = require("../../model/manager");
-const verifyManager = (req, res, next) => {
+const Driver = require("../../model/driver");
+const verifyDriver = async (req, res, next) => {
   const token = req.headers.authorization;
   if (!token)
     return res
@@ -12,15 +12,15 @@ const verifyManager = (req, res, next) => {
         .status(401)
         .json({ status: "error", message: "Unauthorized access" });
 
-    const manager = await Manager.findById({ _id: decoded.id });
-    if (!manager)
+    const driver = await Driver.findById({ _id: decoded.id });
+    if (!driver)
       return res
         .status(401)
         .json({ status: "error", message: "Unauthorized access" });
 
-    req.managerId = decoded.id;
+    req.driverId = decoded.id;
     next();
   });
 };
 
-module.exports = { verifyManager };
+module.exports = { verifyDriver };

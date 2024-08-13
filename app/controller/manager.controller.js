@@ -4,6 +4,8 @@ const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
   try {
+    console.log("check");
+
     const { email, password } = req.body;
     const manager = await Manager.findOne({ email });
 
@@ -18,7 +20,11 @@ const login = async (req, res) => {
         .status(400)
         .json({ status: "error", message: "Invalid password" });
     const token = jwt.sign({ id: manager._id }, process.env.ENCRYPTION_CODE);
-    return res.status(200).json({ status: "success", token });
+    return res.status(200).json({
+      status: "success",
+      token,
+      details: { name: manager.name, email: manager.email },
+    });
   } catch (e) {
     return res.status(500).json({ status: "error", message: e.message });
   }

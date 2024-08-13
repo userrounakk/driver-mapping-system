@@ -4,9 +4,16 @@ if (process.env.NODE_ENV !== "production") {
 const express = require("express");
 const routes = require("./routes/routes");
 const mongoose = require("mongoose");
+const cors = require("cors");
 
 const port = 8000;
 const app = express();
+
+const corsOptions = {
+  origin: "http://localhost:3000", // Replace with your Next.js app URL
+  optionsSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
@@ -24,6 +31,7 @@ mongoose
     console.error(error);
   });
 // Routes connection
+
 app.use("/", routes);
 
 module.exports = app;
