@@ -18,7 +18,7 @@ The Driver Mapping System is a Node.js application that helps manage driver assi
 1. Clone the repository:
 
     ```sh
-    git clone https://github.com/your-username/driver-mapping-system.git
+    git clone https://github.com/userrounakk/driver-mapping-system.git
     cd driver-mapping-system
     ```
 
