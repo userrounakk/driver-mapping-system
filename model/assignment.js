@@ -16,10 +16,6 @@ const AssignmentSchema = new Schema({
     ref: "Vehicle",
     required: true,
   },
-  location: {
-    type: String,
-    required: true,
-  },
   status: {
     type: String,
     default: "pending",
